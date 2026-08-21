@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マイキー佐野 思想スナップショット 2026-08-14</title>
+<style>
+  :root {
+    --bg:#f7f5f0;--bg-card:#fff;--bg-alt:#efece5;--ink:#1a1a1a;--ink-soft:#555;--ink-muted:#888;
+    --accent:#c75300;--accent-soft:#ffe8d4;--bull:#2d6a4f;--bear:#9d2235;--neutral:#5a5a5a;--watch:#b8860b;
+    --border:#d4cfc1;--shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);margin:0;line-height:1.7;font-feature-settings:"palt"}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  header.hero{background:linear-gradient(135deg,#1a1a1a 0%,#2c3e50 100%);color:#f7f5f0;padding:60px 0 50px;border-bottom:4px solid var(--accent)}
+  header.hero h1{margin:0;font-size:2.4rem;letter-spacing:.02em}
+  header.hero .subname{color:#c7b89a;font-size:1rem;margin-top:4px}
+  header.hero .tagline{margin-top:18px;color:#d7d2c5;font-size:1.05rem;max-width:800px}
+  header.hero .meta{margin-top:24px;font-size:.85rem;color:#9a8e75;display:flex;gap:24px;flex-wrap:wrap}
+  header.hero .meta b{color:#ffd5a0;font-weight:600}
+  nav.toc{background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;box-shadow:var(--shadow)}
+  nav.toc ul{list-style:none;margin:0 auto;padding:12px 24px;max-width:1100px;display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem}
+  nav.toc a{color:var(--ink-soft);text-decoration:none;padding:4px 8px;border-radius:4px;transition:all .15s}
+  nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+  section{padding:48px 0} section.alt{background:var(--bg-alt)}
+  section h2{margin:0 0 8px;font-size:1.6rem;border-left:5px solid var(--accent);padding-left:14px}
+  section .lead{color:var(--ink-soft);margin:0 0 28px;padding-left:19px;font-size:.95rem}
+  .profile-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 32px;box-shadow:var(--shadow)}
+  .profile-card .motto{font-size:1.15rem;font-weight:600;color:var(--accent);margin:0 0 16px;padding:12px 16px;background:var(--accent-soft);border-radius:6px;border-left:4px solid var(--accent)}
+  .profile-grid{display:grid;grid-template-columns:140px 1fr;gap:12px 24px}
+  .profile-grid dt{color:var(--ink-muted);font-size:.85rem} .profile-grid dd{margin:0;font-size:.95rem}
+  .timeline{position:relative;padding:0 0 0 40px}
+  .timeline::before{content:"";position:absolute;left:12px;top:8px;bottom:8px;width:2px;background:var(--border)}
+  .timeline-item{position:relative;padding-bottom:28px}
+  .timeline-item::before{content:"";position:absolute;left:-32px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .timeline-item .year{font-weight:700;color:var(--accent);font-size:.9rem;letter-spacing:.05em}
+  .timeline-item .event{margin:2px 0} .timeline-item .detail{color:var(--ink-soft);font-size:.88rem}
+  .worldview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .worldview-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--shadow)}
+  .worldview-card .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600}
+  .worldview-card h3{margin:6px 0 10px;font-size:1.05rem} .worldview-card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+  .belief-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px}
+  .belief-cat{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--shadow)}
+  .belief-cat h3{margin:0 0 14px;font-size:1rem;color:var(--accent);padding-bottom:8px;border-bottom:1px dashed var(--border);display:flex;align-items:center;gap:8px}
+  .belief-cat h3 .count{background:var(--accent);color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:400}
+  .belief-item{padding:10px 0;border-bottom:1px solid #f0ede5;font-size:.92rem} .belief-item:last-child{border-bottom:none}
+  .belief-item .meta-row{margin-top:4px;font-size:.78rem;color:var(--ink-muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .conf{display:inline-block;padding:1px 6px;border-radius:3px;font-family:ui-monospace,"SF Mono",monospace;background:#efece5;color:var(--ink-soft)}
+  .trend-strengthening{color:var(--bull)} .trend-strengthening::before{content:"▲ "}
+  .trend-weakening{color:var(--bear)} .trend-weakening::before{content:"▼ "}
+  .trend-stable{color:var(--neutral)} .trend-stable::before{content:"■ "}
+  .trend-new{color:var(--accent)} .trend-new::before{content:"✦ "}
+  .trend-ambivalent{color:var(--watch)} .trend-ambivalent::before{content:"⚠ "}
+  .kind-inferred{background:#fff3e0;color:#b56500;padding:1px 5px;border-radius:3px;font-size:.7rem}
+  .pred-wrap{background:var(--bg-card);border-radius:10px;box-shadow:var(--shadow);overflow:hidden}
+  .pred-controls{padding:14px 18px;background:var(--bg-alt);border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap}
+  .pred-controls button{background:#fff;border:1px solid var(--border);color:var(--ink-soft);padding:4px 10px;border-radius:16px;cursor:pointer;transition:all .15s;font-size:.78rem}
+  .pred-controls button:hover{border-color:var(--accent);color:var(--accent)}
+  .pred-controls button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  table.preds{width:100%;border-collapse:collapse;font-size:.88rem}
+  table.preds th{text-align:left;padding:12px 14px;background:var(--bg-alt);color:var(--ink-soft);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border)}
+  table.preds td{padding:12px 14px;border-bottom:1px solid #f0ede5;vertical-align:top}
+  table.preds tr:hover td{background:#fcfaf5}
+  table.preds .pid{font-family:ui-monospace,monospace;font-size:.75rem;color:var(--ink-muted)}
+  .pred-domain{font-size:.75rem;color:var(--accent);margin-top:2px}
+  .status-active{color:var(--bull)}
+  .status-validated{background:#d3eee0;color:#1e5b3a;padding:1px 6px;border-radius:3px;font-size:.72rem}
+  .status-revised{background:#ffe9c1;color:#8a5a00;padding:1px 6px;border-radius:3px;font-size:.72rem}
+  .status-weakened{background:#f5d6d6;color:var(--bear);padding:1px 6px;border-radius:3px;font-size:.72rem}
+  .invest-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:720px){.invest-grid{grid-template-columns:1fr}}
+  .invest-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px 24px;box-shadow:var(--shadow)}
+  .invest-card.bull{border-top:4px solid var(--bull)} .invest-card.bear{border-top:4px solid var(--bear)}
+  .invest-card.style{border-top:4px solid var(--accent)} .invest-card.watch{border-top:4px solid var(--watch)}
+  .invest-card h3{margin:0 0 14px;font-size:1.05rem} .invest-card ul{margin:0;padding-left:20px;font-size:.9rem;color:var(--ink-soft)}
+  .invest-card ul li{margin-bottom:6px}
+  .topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+  .topic-chip{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:.85rem;box-shadow:var(--shadow)}
+  .topic-chip .name{font-weight:600} .topic-chip .stance{font-size:.72rem;margin-top:4px}
+  .stance-bullish{color:var(--bull)} .stance-bearish{color:var(--bear)} .stance-mixed{color:var(--watch)} .stance-cautious{color:var(--ink-soft)}
+  .watch-card{background:#fff8eb;border:1px solid #e8d6a8;border-radius:10px;padding:18px 22px;margin-bottom:14px}
+  .watch-card h4{margin:0 0 8px;font-size:.95rem;color:var(--watch)} .watch-card p{margin:0;font-size:.88rem;color:var(--ink-soft)}
+  .watch-card .ref{font-family:ui-monospace,monospace;font-size:.78rem;color:var(--ink-muted)}
+  footer.bottom{background:#1a1a1a;color:#a8a8a8;padding:30px 0;font-size:.82rem;border-top:4px solid var(--accent)}
+  footer.bottom .stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:12px}
+  footer.bottom .stats div{display:flex;flex-direction:column} footer.bottom .stats b{color:#ffd5a0;font-size:1.4rem;font-weight:600}
+  @media print{nav.toc{display:none} section{page-break-inside:avoid;padding:24px 0}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <h1>マイキー佐野</h1>
+  <div class="subname">佐野義仁</div>
+  <p class="tagline">40カ国以上で事業を立ち上げ、米国スタートアップへの資金調達アドバイザー、慈善活動家、YouTubeチャンネル「マイキーの非道徳な社会学」運営者。「勉強とゲームを楽しんで気楽に生きる」をモットーに、社会学・経営学・経済学を約30年研究し続けている。</p>
+  <div class="meta">
+    <span><b>生年</b> 1982年（静岡県富士市）</span>
+    <span><b>YouTube登録</b> 約6.9万人</span>
+    <span><b>更新</b> 2026-08-14</span>
+    <span><b>追跡ソース</b> YT 59 + note 19</span>
+  </div>
+</div></header>
+
+<nav class="toc"><ul>
+  <li><a href="#profile">人物</a></li>
+  <li><a href="#timeline">経歴</a></li>
+  <li><a href="#worldview">世界観</a></li>
+  <li><a href="#beliefs">思想マップ (34)</a></li>
+  <li><a href="#predictions">予測台帳 (44)</a></li>
+  <li><a href="#investment">投資スタンス</a></li>
+  <li><a href="#topics">テーマ別 (54)</a></li>
+  <li><a href="#watch">要注意</a></li>
+</ul></nav>
+
+<section id="profile"><div class="wrap">
+  <h2>1. 人物概要</h2>
+  <p class="lead">研究者気質と海外経験を武器に、特定の専門に縛られない横断的な分析を続ける。</p>
+  <div class="profile-card">
+    <p class="motto">「勉強とゲームを楽しんで、気楽に生きる」</p>
+    <dl class="profile-grid">
+        <dt>本名</dt><dd>佐野 義仁（さの よしひと）</dd>
+        <dt>生年月日</dt><dd>1982年6月5日</dd>
+        <dt>出身</dt><dd>静岡県富士市の小さな団地</dd>
+        <dt>学歴</dt><dd>米国オレゴン州プロテスタント系高校 → ポートランド州立大学（規則違反で退学）→ 帰国後、独学で帰国子女枠で大学卒業</dd>
+        <dt>言語</dt><dd>日本語・英語・スペイン語（基礎）。映画鑑賞で英語を独学</dd>
+        <dt>本職</dt><dd>米国スタートアップ資金調達アドバイザー / 企業アドバイザー / 海外大学研究者向け助言</dd>
+        <dt>運営</dt><dd>YouTube「マイキーの非道徳な社会学」（1200本以上）、月額1万円のビジネススクール（700-800人、収益は全額子ども食堂・孤児院へ寄付）</dd>
+        <dt>慈善活動</dt><dd>カンボジア・フィリピン・インドネシアで教育支援、日本国内40店舗の子ども食堂支援、東南アジアで猫保護（4室で約200匹）</dd>
+        <dt>主要キャリア</dt><dd>2008-2019：スタートアップファンド組成と上場支援で40カ国を巡る（30日で30カ国・1日10件打ち合わせの日々）</dd>
+        <dt>著書</dt><dd>『ずる賢い人のための億万長者入門 — 成功者の9割は性格が悪い』</dd>
+    </dl>
+  </div>
+</div></section>
+
+<section id="timeline" class="alt"><div class="wrap">
+  <h2>2. 経歴タイムライン</h2>
+  <p class="lead">節目をたどる。</p>
+  <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">1982</div>
+        <div class="event">静岡県富士市の団地で出生</div>
+        <div class="detail">両親離婚、母は公務員＋夜のアルバイト。家にひとり、映画とゲームに没頭。年300本の映画で英語独学。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">小学生時代</div>
+        <div class="event">FBI犯罪レポートを読み漁る変わった子</div>
+        <div class="detail">教科書を学期初に全部読み、授業は聞き流し。「お母さんのようにならないように」と言われ自由気ままに育つ。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">1998 (16歳)</div>
+        <div class="event">米国オレゴン州の小さな町に留学</div>
+        <div class="detail">人口2000人の田舎のプロテスタント系高校。聖書授業・教会・男女接触禁止の日々を楽しむ。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">夏休み</div>
+        <div class="event">メキシコでテオティワカン・アステカ・マヤ文明を学ぶ</div>
+        <div class="detail">3週間でスペイン語の日常会話を習得。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">17歳</div>
+        <div class="event">経済・金融・社会学・政治の学習を開始</div>
+        <div class="detail">経営者を志す同級生たちから影響。客観視するスキルを獲得。IQ150以上判定（本人は無関心）。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">大学退学・帰国後</div>
+        <div class="event">帰国子女枠で大学入学、独学卒業</div>
+        <div class="detail">派遣会社で運送業・工場・イベント業を週替わりで体験、「企業の非効率」を肌で感じる。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">25歳頃</div>
+        <div class="event">中小商社に入社、入社6カ月で単独海外営業へ</div>
+        <div class="detail">大手商社の雑務を嫌い辞退。中小商社で「世界で好きにやれ」と背中を押される。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2008-2019</div>
+        <div class="event">40カ国以上で事業立ち上げ・ファンド組成・上場支援</div>
+        <div class="detail">「30日で30カ国」「1日10件の面談、忙しい日は15件30分刻み」の日々。睡眠3時間、深夜便で移動しながら寝る。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2015</div>
+        <div class="event">カンボジアで投資会社・NGO設立</div>
+        <div class="detail">中央銀行と金融システムの打ち合わせを契機に、運用益の一部を教育支援に。フィリピン・インドネシアにも拡大。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2020</div>
+        <div class="event">コロナで日本に帰国</div>
+        <div class="detail">「すぐ海外に戻るつもり」が長期化。日本の子ども食堂支援を開始（最初5-10食 → 200食 / 40店舗）。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2021</div>
+        <div class="event">YouTubeチャンネル「マイキーの非道徳な社会学」開始</div>
+        <div class="detail">「マイキーさん、YouTubeやったらどうですか」と知人に押し切られて。経済・投資・経営・社会学を1200本以上配信。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2025年8月</div>
+        <div class="event">登録者6.9万人、ビジネススクール定着</div>
+        <div class="detail">月1万円・年150回以上の講義、参加者700-800人。収益は全額寄付。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2026年5月</div>
+        <div class="event">米中首脳会談を3日連続で詳細分析、書籍5万部に迫る</div>
+        <div class="detail">直前予測 (5/13) → 事後検証 (5/19) で「中国やっぱすげえ、かなり当たってた」と本人検証。書店全国販売中。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">現在</div>
+        <div class="event">「事業に深入りしない」と決めて気楽に生きる</div>
+        <div class="detail">『フリーターなので』と台湾政府スタートアップの誘いも断る。ゲーム3時間/日 + 月100社面談 + YouTube一発撮り。</div>
+      </div>
+  </div>
+</div></section>
+
+<section id="worldview"><div class="wrap">
+  <h2>3. 現在の世界観（2026-08-14 時点）</h2>
+  <p class="lead">5軸で俯瞰した、現時点でのマクロ認識。</p>
+  <div class="worldview-grid">
+      <div class="worldview-card">
+        <div class="label">マクロ</div>
+        <h3>グレートリセット進行</h3>
+        <p>通貨制度はインフレが常態、現物資産が長期で強い。米中冷戦下で中国の戦略性が勝つ。二極化加速。</p>
+      </div>
+      <div class="worldview-card">
+        <div class="label">テクノロジー</div>
+        <h3>AI収益化フェーズ入り</h3>
+        <p>AIエージェント時代到来は前提。テック株過熱は警戒、AIサイバー攻撃が新地政学要素。NVIDIA一強だが2027頃に構造転換、ASIC（Broadcom/Marvel）注目。</p>
+      </div>
+      <div class="worldview-card">
+        <div class="label">投資</div>
+        <h3>都心レバ＋現物＋AIインフラ</h3>
+        <p>都心レバレッジド不動産、現物資産、AIピック&amp;シャベル（電力・冷却・センサー）、韓国半導体エコシステム。売買推奨せず「自分の型」を持つ。</p>
+      </div>
+      <div class="worldview-card">
+        <div class="label">仕事</div>
+        <h3>「人を動かす力」がコア</h3>
+        <p>知識ではなくコミュニケーション＋批判的思考が決定的。中間管理職は淘汰、SCM/プレゼン能力が新基準。</p>
+      </div>
+      <div class="worldview-card">
+        <div class="label">政治</div>
+        <h3>ポピュリズム批判維持</h3>
+        <p>消費税減税・国債増発は副作用大。数字と検証に耐える政策設計が必要。民主主義の脆弱性を冷静に分析、中国の長期戦略性を高評価。</p>
+      </div>
+  </div>
+</div></section>
+
+<section id="beliefs" class="alt"><div class="wrap">
+  <h2>4. 思想・価値観マップ（全34件）</h2>
+  <p class="lead">カテゴリ別。▲=強化中 ■=安定 ✦=新規 ⚠=要観察。</p>
+  <div class="belief-categories">
+      <div class="belief-cat">
+        <h3>個人観 <span class="count">4</span></h3>
+        <div class="belief-item">
+          <div class="stmt">設計（人生・投資・組織）が努力よりも先に必要。撤退基準を事前に持つことが本質</div>
+          <div class="meta-row"><span class="conf">0.95</span><span class="trend-strengthening">strengthening</span><span>blf_002</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">時間効率の極端な最大化が成果の前提。食事5分、YouTube一発撮り、月100社面談</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-stable">stable</span><span>blf_005</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">こだわりを捨てる柔軟性が強いメンタル。エンダウメント効果から自由になる</div>
+          <div class="meta-row"><span class="conf">0.88</span><span class="trend-stable">stable</span><span>blf_006</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">「気楽に生きる、勉強とゲームを楽しむ」がモットー。事業に深入りしない、収益は教育・寄付に還元</div>
+          <div class="meta-row"><span class="conf">0.93</span><span class="trend-stable">stable</span><span>blf_015</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>人生観 <span class="count">1</span></h3>
+        <div class="belief-item">
+          <div class="stmt">富裕層は経験・文化資本・社会資本に投資する。物質は買った瞬間がピーク。二極化が世界中で進む</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-strengthening">strengthening</span><span>blf_014</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>仕事観 <span class="count">1</span></h3>
+        <div class="belief-item">
+          <div class="stmt">知識より「人を動かす力」(コミュニケーション・営業・プレゼン) が現代の優秀さの定義</div>
+          <div class="meta-row"><span class="conf">0.95</span><span class="trend-strengthening">strengthening</span><span>blf_001</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>労働観 <span class="count">2</span></h3>
+        <div class="belief-item">
+          <div class="stmt">産業の転換点では大量解雇は健全な構造変化。日本は転換が遅すぎる</div>
+          <div class="meta-row"><span class="conf">0.88</span><span class="trend-new">new</span><span>blf_019</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">労働コストは『計算集約型』に進化中。AI×ワークフロー自動化で47.9%が代替される段階</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_020</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>ビジネス観 <span class="count">4</span></h3>
+        <div class="belief-item">
+          <div class="stmt">質を持つ少数顧客＞広く浅い大衆。価値の低い50万フォロワーより質の高い3万フォロワーが価値</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-strengthening">strengthening</span><span>blf_003</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">サプライチェーンマネジメント(SCM)+垂直統合能力がリーダーシップの新基準。日本企業は価格転嫁に頼り、海外はSCM再構築</div>
+          <div class="meta-row"><span class="conf">0.93</span><span class="trend-strengthening">strengthening</span><span>blf_016</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">適度な『現実湾曲』『見せ方の工夫』は交渉・ブランディング・市場アピールの武器。ただし行き過ぎは詐欺</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-strengthening">strengthening</span><span>blf_017</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">DataBricks型の高NRR（140%）・高成長率（80%）・高ARR（30億ドル）企業は、非上場でも最強の競争力を持つ。収益性より成長性が評価される段階</div>
+          <div class="meta-row"><span class="conf">0.78</span><span class="trend-new">new</span><span>blf_034</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>経営観 <span class="count">2</span></h3>
+        <div class="belief-item">
+          <div class="stmt">経営者の99%は数字が弱く、ビジネスは『運とタイミング』だけで再現性がない。本物は計算と引き出しの結果</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_021</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">ABCの欠如(傲慢/官僚的/慢心)を排除する経営者が勝つ。Greg Abel型データドリブン経営がカリスマ経営に代わる</div>
+          <div class="meta-row"><span class="conf">0.78</span><span class="trend-new">new</span><span>blf_023</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>投資観 <span class="count">7</span></h3>
+        <div class="belief-item">
+          <div class="stmt">逆張り戦略こそ生き残る道。トレンドが飽和した後の反転を見抜く</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-strengthening">strengthening</span><span>blf_004</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">日本円・日本国債は長期的に価値を失う。グレートリセット下では現物資産が強い</div>
+          <div class="meta-row"><span class="conf">0.87</span><span class="trend-strengthening">strengthening</span><span>blf_010</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">都心不動産はレバレッジド資産形成の本道、地方氷物件はゴミ。99.98%の不動産業界人は嘘つき</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_011</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">売買推奨はしない。投資は『誰を信じるか』ではなく『自分の型を固定するか』で決まる</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-stable">stable</span><span>blf_013</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">選択と集中は強いが『一社依存』が表裏のリスク。ノキア型崩壊が次にノボノルディスクに来る可能性</div>
+          <div class="meta-row"><span class="conf">0.82</span><span class="trend-strengthening">strengthening</span><span>blf_018</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">CXMTが大手3社（サムスン/SK/マイクロン）のHBM特化の隙を突き、標準DRAMで台頭。逆張り戦略の典型事例</div>
+          <div class="meta-row"><span class="conf">0.82</span><span class="trend-new">new</span><span>blf_027</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">為替介入の効果は一時的。構造的円安圧力（日米金利差・財政赤字・エネルギー依存）には対抗できない</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_030</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>国家観 <span class="count">8</span></h3>
+        <div class="belief-item">
+          <div class="stmt">中国は『時間稼ぎ』を歴史的に活用する戦略国家。短期成果より長期準備が強み</div>
+          <div class="meta-row"><span class="conf">0.97</span><span class="trend-strengthening">strengthening</span><span>blf_008</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">海外経験・グローバル視点が必須。日本国内市場依存（1.2億人）は長期で詰む</div>
+          <div class="meta-row"><span class="conf">0.93</span><span class="trend-strengthening">strengthening</span><span>blf_012</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">日本は『二人二化』の二極化が進む。製造業/重工/防衛は強い、自動車・小売は二極分化</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_022</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">日本企業の最後のチャンスはドイツ型『自動車国家→防衛産業転換』。SBIコネクト型マッチングと余剰能力転用</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_024</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">好不調は『日本 vs 中国/韓国』の営業力差で決まる。技術ではなく交渉・ロビーで負ける</div>
+          <div class="meta-row"><span class="conf">0.9</span><span class="trend-strengthening">strengthening</span><span>blf_025</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">日本のIP産業（エンタメ・コンテンツ）は海外プラットフォーム依存で還元率5.5%しか残らない。キャズムを越えられず国際展開に失敗し続けている</div>
+          <div class="meta-row"><span class="conf">0.82</span><span class="trend-new">new</span><span>blf_029</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">中国AIと米国AIの能力差が2023年31.6%から2026年2.7%に急縮小。資本効率と人材戦略で中国が猛追している</div>
+          <div class="meta-row"><span class="conf">0.83</span><span class="trend-new">new</span><span>blf_032</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">HuaweiはR&amp;D人員11.4万人（従業員の53%）・14年間2000億ドル投資でCANN（CUDA互換）を含む垂直統合エコシステムを構築。AIから半導体・電力まで支配する</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_033</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>政治観 <span class="count">3</span></h3>
+        <div class="belief-item">
+          <div class="stmt">ポピュリズム政策（消費税減税・国債増発）は金利・通貨・財政の副作用が大きい。数字と検証に耐える設計が必要</div>
+          <div class="meta-row"><span class="conf">0.92</span><span class="trend-strengthening">strengthening</span><span>blf_007</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">民主主義は国民の言うことを聞きすぎて『頭の悪い意見に引っ張られる』脆弱性がある。中国の強権が戦略性で勝つ</div>
+          <div class="meta-row"><span class="conf">0.7</span><span class="kind-inferred">inferred</span><span class="trend-stable">stable</span><span>blf_009</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">外交評価のアンビバレンス: 高市の中立外交は『勝利』、関税15%合意は『完全敗北』。文脈分離で読む</div>
+          <div class="meta-row"><span class="conf">0.65</span><span class="kind-inferred">inferred</span><span class="trend-ambivalent">ambivalent</span><span>blf_026</span></div>
+        </div>
+      </div>
+      <div class="belief-cat">
+        <h3>技術観 <span class="count">2</span></h3>
+        <div class="belief-item">
+          <div class="stmt">AI光通信インフラはアクティブ層（イノライト/コヒレント/ルメンタム）とパッシブ層（コーニング/藤倉）の2層構造。相互補完関係で両方を見る必要がある</div>
+          <div class="meta-row"><span class="conf">0.85</span><span class="trend-new">new</span><span>blf_028</span></div>
+        </div>
+        <div class="belief-item">
+          <div class="stmt">SpaceXはKpex184億ドルの86%をAIに投入し、宇宙企業からAI企業に実質転換している</div>
+          <div class="meta-row"><span class="conf">0.8</span><span class="trend-new">new</span><span>blf_031</span></div>
+        </div>
+      </div>
+  </div>
+</div></section>
+
+<section id="predictions"><div class="wrap">
+  <h2>5. 未来予測台帳（全44件）</h2>
+  <p class="lead">時間軸・確信度・状態付き。フィルタで絞り込み可能。</p>
+  <div class="pred-wrap">
+    <div class="pred-controls">
+      <button class="active" data-filter="all">すべて (44)</button>
+      <button data-filter="ai">AI・半導体</button>
+      <button data-filter="japan">日本経済</button>
+      <button data-filter="china">中国・地政学</button>
+      <button data-filter="finance">財政・通貨</button>
+      <button data-filter="auto">自動車</button>
+      <button data-filter="labor">労働</button>
+      <button data-filter="real-estate">不動産</button>
+    </div>
+    <table class="preds">
+      <thead><tr><th>予測</th><th>時間軸</th><th>確信度</th><th>状態</th></tr></thead>
+      <tbody>
+          <tr data-cat="japan finance"><td><span class="pid">pred_001</span><div class="pred-stmt">日本国債市場の信認危機が2026後半〜2027に表面化、円安・金利高騰が生活直撃</div><div class="pred-domain">日本財政 / 金利 / 為替</div></td><td>2026-2027</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china auto"><td><span class="pid">pred_002</span><div class="pred-stmt">中国EVが日本車を東南アジア・豪・アフリカ・中東で侵食、日本部品メーカー大規模整理</div><div class="pred-domain">自動車 / EV / 東南アジア / 中国</div></td><td>2026-2030</td><td><span class="conf">0.93</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_003</span><div class="pred-stmt">米国国防産業のレアアース依存により、対中強硬策ほど米軍生産能力が落ちる</div><div class="pred-domain">地政学 / 国防 / レアアース</div></td><td>2026-2030</td><td><span class="conf">0.85</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china finance"><td><span class="pid">pred_004</span><div class="pred-stmt">人民元・CIPS決済シェアが拡大、ドル覇権の段階的浸食</div><div class="pred-domain">金融 / 通貨 / 地政学</div></td><td>5-10年</td><td><span class="conf">0.65</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="finance real-estate"><td><span class="pid">pred_005</span><div class="pred-stmt">不動産融資が3-6か月、長くて1年以内に停止局面が来る。優良物件が出るが融資もつかない</div><div class="pred-domain">不動産 / 金融</div></td><td>2026-08〜2027</td><td><span class="conf">0.65</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="real-estate"><td><span class="pid">pred_006</span><div class="pred-stmt">都心不動産は引き続き選好、地方氷物件は人口減で無価値化</div><div class="pred-domain">不動産</div></td><td>10-30年</td><td><span class="conf">0.85</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan"><td><span class="pid">pred_007</span><div class="pred-stmt">インフルエンサーマーケの『量』偏重は2026年内に崩壊、マイクロインフルエンサー＋プロダクトアウト型へ</div><div class="pred-domain">マーケティング / メディア</div></td><td>2026-2030</td><td><span class="conf">0.7</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan labor"><td><span class="pid">pred_008</span><div class="pred-stmt">学歴神話の崩壊が日本でも本格化、『人を動かせない高学歴者』は淘汰</div><div class="pred-domain">教育 / 労働市場</div></td><td>5-10年</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="finance"><td><span class="pid">pred_009</span><div class="pred-stmt">ノキア型崩壊が次にデンマーク/ノボノルディスクに来る可能性</div><div class="pred-domain">北欧経済 / 製薬 / 一社依存</div></td><td>5-10年</td><td><span class="conf">0.5</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan"><td><span class="pid">pred_010</span><div class="pred-stmt">東京は本気の経済特区がない限り世界主要都市から脱落</div><div class="pred-domain">都市 / 日本経済</div></td><td>5-15年</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat=""><td><span class="pid">pred_011</span><div class="pred-stmt">SCM(サプライチェーン)出身CEOがさらに増える、グローバル化対応の必須要件</div><div class="pred-domain">ビジネス / 組織</div></td><td>5-10年</td><td><span class="conf">0.8</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_012</span><div class="pred-stmt">米中首脳会談(2026-05-14/15)は大きな進展なし、中国有利の土台、トランプは『勝った』演出</div><div class="pred-domain">地政学 / 米中</div></td><td>2026-05-15直後</td><td><span class="conf">0.85</span></td><td><span class="status-validated">validated</span></td></tr>
+          <tr data-cat="china finance"><td><span class="pid">pred_013</span><div class="pred-stmt">トランプ任期残り3年が日本にとってのタイムリミット、バンス政権で関係激変リスク</div><div class="pred-domain">地政学 / 日米</div></td><td>2028以降</td><td><span class="conf">0.55</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="finance"><td><span class="pid">pred_014</span><div class="pred-stmt">5,500億ドル(80兆円)対米投資基金は『合法的な資金吸い上げ』、回収まで5:5、回収後9:1</div><div class="pred-domain">日米 / 財政</div></td><td>5-10年</td><td><span class="conf">0.7</span></td><td><span class="status-revised">revised</span></td></tr>
+          <tr data-cat="auto"><td><span class="pid">pred_015</span><div class="pred-stmt">ハイブリッド一時的優位は2-3年で終わる、東南アジアもEV完全移行</div><div class="pred-domain">自動車 / EV</div></td><td>2027-2029</td><td><span class="conf">0.65</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan"><td><span class="pid">pred_016</span><div class="pred-stmt">日本の事業承継問題深刻化、2025年までに245万社が後継者不足で廃業危機</div><div class="pred-domain">日本経済 / M&amp;A</div></td><td>2025-2030</td><td><span class="conf">0.85</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai china"><td><span class="pid">pred_017</span><div class="pred-stmt">台湾は原発停止+天然ガス1/3カタール依存で電力危機が悪化、TSMC稼働率にも影響</div><div class="pred-domain">台湾 / エネルギー / 半導体</div></td><td>2026-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai china"><td><span class="pid">pred_018</span><div class="pred-stmt">AIによるサイバー攻撃(Anthropic Mythus型)が次世代の地政学切り札となる</div><div class="pred-domain">AI / サイバー / 地政学</div></td><td>2027-2030</td><td><span class="conf">0.5</span></td><td><span class="status-weakened">weakened</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_019</span><div class="pred-stmt">NVIDIA一強は当面継続だが、2027頃からAmazon Trainium・Google TPU・AMD ROCmの挑戦で構造転換</div><div class="pred-domain">AI / 半導体 / クラウド</div></td><td>2027-2030</td><td><span class="conf">0.8</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_020</span><div class="pred-stmt">サムスンが次世代AIコンピューティング統合パートナーに進化、テスラAI6独占+Apple/Intel併用受注</div><div class="pred-domain">半導体 / 韓国 / AI</div></td><td>2026-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_021</span><div class="pred-stmt">AMDが時価総額1兆ドル到達可能。AIエージェント時代のCPU需要復活+ASIC分散の受益</div><div class="pred-domain">半導体 / AI</div></td><td>1-2年</td><td><span class="conf">0.6</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai labor"><td><span class="pid">pred_022</span><div class="pred-stmt">米国大量解雇は2026に年44.7万人超え、AI×WF自動化で47.9%が代替</div><div class="pred-domain">労働市場 / AI</div></td><td>2026年中-2027</td><td><span class="conf">0.85</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan labor"><td><span class="pid">pred_023</span><div class="pred-stmt">中間管理職フラット化が日本企業55%で本格化、ミドルマネジメント大量退職募集</div><div class="pred-domain">労働市場 / 日本</div></td><td>2026-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="auto"><td><span class="pid">pred_024</span><div class="pred-stmt">鴻海×三菱電機提携で日本EVサプライチェーン再編、中堅サプライヤー淘汰</div><div class="pred-domain">自動車 / EV / サプライチェーン</div></td><td>2026-2030</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_025</span><div class="pred-stmt">スシロー型『中国新しい贅沢』モデルが浜寿司・他チェーンへ波及、ただし展開速度過熱で2027以降にブーム消化</div><div class="pred-domain">消費 / 中国 / 外食</div></td><td>2026-2028</td><td><span class="conf">0.55</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="auto"><td><span class="pid">pred_026</span><div class="pred-stmt">Waymoは2027までにHyundai Ioniq5 (米国製造)中心へ移行、日本・ロンドンが国際展開先</div><div class="pred-domain">自動運転 / ロボタクシー</div></td><td>2026-2028</td><td><span class="conf">0.7</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat=""><td><span class="pid">pred_027</span><div class="pred-stmt">ドイツが自動車国家から防衛産業転換に成功、2027-2030の経済成長エンジン交代。日本も追随必須</div><div class="pred-domain">ドイツ / 防衛 / 経済</div></td><td>2026-2030</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_028</span><div class="pred-stmt">Berkshire Hathaway Energyのデータセンター電力ビジネス急拡大、AI ピック&amp;シャベル受益</div><div class="pred-domain">エネルギー / AI</div></td><td>2026-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_029</span><div class="pred-stmt">インドは2026-27にGDP名目10%成長、ただしエネルギー60%中国依存・3交代制でポストチャイナは時期尚早</div><div class="pred-domain">インド / 成長 / 中国依存</div></td><td>2026-2030</td><td><span class="conf">0.6</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="auto"><td><span class="pid">pred_030</span><div class="pred-stmt">鈴木がインド市場40%シェアキープ可能、2031年までに400万台体制+80万台輸出</div><div class="pred-domain">インド / 自動車</div></td><td>2026-2031</td><td><span class="conf">0.55</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan"><td><span class="pid">pred_031</span><div class="pred-stmt">任天堂Switch 2の2027年予想1650万台 (前年比16%減)、大型ソフト枯渇でハード普及鈍化、株価圧迫</div><div class="pred-domain">ゲーム / 日本</div></td><td>2026-2027</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan auto"><td><span class="pid">pred_032</span><div class="pred-stmt">トヨタ自動車は2027年3月期も営業利益3年連続減、ハイブリッド以外SDV移行遅れ続く。中東情勢でアルミ高騰6700億押し下げ</div><div class="pred-domain">自動車 / 日本</div></td><td>2026-2027</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai japan"><td><span class="pid">pred_033</span><div class="pred-stmt">ソニー+TSMC熊本合弁で世界初イメージセンサー製造、自動車・ロボティクス・フィジカルAI市場で60%シェア維持</div><div class="pred-domain">日本 / 半導体 / AI</div></td><td>2026-2030</td><td><span class="conf">0.8</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai china"><td><span class="pid">pred_034</span><div class="pred-stmt">CXMTが2027〜2028年に世界DRAMシェア17%超えを達成、標準DRAM市場で大手3社に次ぐ第4極として台頭</div><div class="pred-domain">半導体 / 中国 / DRAM</div></td><td>2027-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_035</span><div class="pred-stmt">OSAT市場（ASE/アムコ）がTSMC後工程アウトソース拡大に連動して急成長、日本材料・装置企業（レゾナック・イビデン等）も受益</div><div class="pred-domain">半導体 / 後工程 / OSAT</div></td><td>2026-2028</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_036</span><div class="pred-stmt">コーニングがNVIDIA投資を受け光ファイバー生産能力を10倍拡大、AI光通信インフラのパッシブ層リーダーとして再評価</div><div class="pred-domain">AI / 光通信 / 半導体</div></td><td>2026-2028</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_037</span><div class="pred-stmt">SpaceXのロケット独占が崩壊。ブルーオリジン参入（コスト+170%）でロケット輸送コスト低下、2028年以降は複数プレイヤー時代へ</div><div class="pred-domain">宇宙 / 民間宇宙 / 地政学</div></td><td>2026-2028</td><td><span class="conf">0.65</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat=""><td><span class="pid">pred_038</span><div class="pred-stmt">2026年11月米中間選挙でガソリン4ドル/ガロン超えが続けば共和党に不利。インフレ再燃がトランプの最大のリスク</div><div class="pred-domain">政治 / 米国 / エネルギー</div></td><td>2026-11</td><td><span class="conf">0.55</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_039</span><div class="pred-stmt">DataBricksが2027年に上場、評価額2000億ドル超え。AI時代のデータ統合・MLプラットフォームとして最強ポジションを確立</div><div class="pred-domain">AI / SaaS / テック</div></td><td>2027</td><td><span class="conf">0.6</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="japan auto"><td><span class="pid">pred_040</span><div class="pred-stmt">BYDが日本軽EVに参入するが、補助金格差（国産有利）で短期苦戦。3〜5年でブランド価値戦略に転換して巻き返す</div><div class="pred-domain">自動車 / EV / 日本</div></td><td>2026-2031</td><td><span class="conf">0.7</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai japan"><td><span class="pid">pred_041</span><div class="pred-stmt">日本フィジカルAI市場が2040年に10.5兆円規模。NEDO主導で製造業ロボティクス国産化、ソニー+TSMC+ファナックが中核</div><div class="pred-domain">AI / 日本 / ロボティクス</div></td><td>2026-2040</td><td><span class="conf">0.7</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="china"><td><span class="pid">pred_042</span><div class="pred-stmt">UAEがサウジアラビアとの経済覇権争いで優位に立つ。OPEC離脱カード行使でOPEC機能不全リスクが高まる</div><div class="pred-domain">地政学 / エネルギー / 中東</div></td><td>2027-2030</td><td><span class="conf">0.55</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai china"><td><span class="pid">pred_043</span><div class="pred-stmt">HuaweiのCANN（CUDA互換AIフレームワーク）が中国AI企業の事実上の標準になり、NVIDIAの中国市場喪失が加速</div><div class="pred-domain">AI / 半導体 / 中国 / NVIDIA</div></td><td>2027-2030</td><td><span class="conf">0.78</span></td><td><span class="status-active">active</span></td></tr>
+          <tr data-cat="ai"><td><span class="pid">pred_044</span><div class="pred-stmt">GAFAMのフリーキャッシュフローがKpex急増でマイナス転落（Google: -59億ドル）。AI投資ROIの説明不足が株価圧迫要因に</div><div class="pred-domain">AI / 米国テック / 投資</div></td><td>2026-2027</td><td><span class="conf">0.75</span></td><td><span class="status-active">active</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section id="investment" class="alt"><div class="wrap">
+  <h2>6. 投資スタンス</h2>
+  <p class="lead">マクロ＋個別ミックス、長期ホライズン、売買推奨はせず「型」で動く。</p>
+  <div class="invest-grid">
+    <div class="invest-card style"><h3>🎯 スタイル</h3><ul>
+          <li><b>ホライズン</b>：long</li>
+          <li><b>アプローチ</b>：macro_plus_individual_mixed</li>
+          <li><b>資産クラス</b>：都心レバレッジド不動産、現物資産(水源・農地・コモディティ)、個別株(中国EV・日本商社・SCM CEO企業・台湾半導体エコシステム・韓国半導体・米国ASIC)、金/暗号資産(限定的、決済用途)、外貨建て資産、日本重工/防衛/造船(構造受益)</li>
+          <li><b>核心</b>：売買推奨は出さない。型を持って観察・調査・小さな実験で進める</li>
+    </ul></div>
+    <div class="invest-card bull"><h3>📈 強気条件</h3><ul>
+          <li>グレートリセット下のインフレ環境(現物資産)</li>
+          <li>中国の長期戦略性が結果として勝つテーマ</li>
+          <li>ノキア型崩壊後の再構築</li>
+          <li>都心一極集中の継続</li>
+          <li>他人の金で買い他人の金で返せるレバレッジ可能性</li>
+          <li>AIゴールドラッシュのピック&amp;シャベル側(冷却・受電・センサー)</li>
+          <li>二極化下で富裕層の経験消費(NetJets型)</li>
+          <li>防衛産業転換成功(ドイツ模倣)</li>
+          <li>ABC欠如のデータドリブン経営者(Greg Abel型)</li>
+    </ul></div>
+    <div class="invest-card bear"><h3>📉 弱気条件</h3><ul>
+          <li>一社依存構造(ノボノルディスク、サムスン)</li>
+          <li>日本円・日本国債の単独保有</li>
+          <li>地方氷物件</li>
+          <li>米国国防産業(レアアース依存リスク)</li>
+          <li>日本自動車セクター(東南アジア・中国EV・印度敗北)</li>
+          <li>テック株(短期過熱)</li>
+          <li>暗号資産単独投資(実体経済紐づきなし)</li>
+          <li>中堅自動車部品サプライヤー(鴻海垂直統合で淘汰)</li>
+          <li>任天堂(大型ソフト枯渇)</li>
+    </ul></div>
+    <div class="invest-card watch"><h3>🔍 観察指標</h3><ul>
+          <li>日米金利差・長期金利</li>
+          <li>JGB入札応札倍率 (20年・40年)</li>
+          <li>日銀バランスシート</li>
+          <li>為替(円ドル・円ユーロ)</li>
+          <li>中国EV各社のグローバル輸出量</li>
+          <li>CIPS取引量</li>
+          <li>TSMC稼働率・台湾天然ガス備蓄日数</li>
+          <li>米国防予算のレアアース調達コスト</li>
+          <li>都心商業不動産利回り</li>
+          <li>デンマークGDPのノボノルディスク寄与度</li>
+          <li>AI推論コスト1トーク当たり (TPU vs GPU)</li>
+          <li>サムスン5/21-6/7ストライキ進展</li>
+          <li>Apple TSMC脱却の進捗</li>
+          <li>Berkshire Hathaway Energy売上成長率</li>
+          <li>NetJets/プライベートジェット需要</li>
+          <li>BHE/三菱重工受注残</li>
+          <li>Waymoの国際展開都市数</li>
+          <li>Rheinmetall弾薬工場稼働状況</li>
+          <li>鈴木インドシェア (40%維持できるか)</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section id="topics"><div class="wrap">
+  <h2>7. テーマ別スタンス（54テーマ）</h2>
+  <p class="lead">追跡中の全テーマと現在の評価方向。</p>
+  <div class="topics-grid">
+      <div class="topic-chip"><div class="name">AI</div><div class="stance stance-mixed">mixed_structural_growth</div></div>
+      <div class="topic-chip"><div class="name">中国</div><div class="stance stance-mixed">mixed_strong_strategy</div></div>
+      <div class="topic-chip"><div class="name">米国</div><div class="stance stance-mixed">mixed_polarizing</div></div>
+      <div class="topic-chip"><div class="name">日本国債</div><div class="stance stance-bearish">bearish</div></div>
+      <div class="topic-chip"><div class="name">日本円</div><div class="stance stance-bearish">bearish</div></div>
+      <div class="topic-chip"><div class="name">都心不動産</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">地方不動産</div><div class="stance stance-bearish">bearish</div></div>
+      <div class="topic-chip"><div class="name">中国EV</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">日本車</div><div class="stance stance-bearish">bearish</div></div>
+      <div class="topic-chip"><div class="name">レアアース・希土類</div><div class="stance stance-bullish">bullish_supply_constrained</div></div>
+      <div class="topic-chip"><div class="name">人民元/CIPS</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">暗号資産</div><div class="stance stance-cautious">cautious</div></div>
+      <div class="topic-chip"><div class="name">テック株/半導体</div><div class="stance stance-bullish">selective_bullish</div></div>
+      <div class="topic-chip"><div class="name">日本商社</div><div class="stance stance-bullish">bullish_buffett_view</div></div>
+      <div class="topic-chip"><div class="name">TSMC・台湾半導体</div><div class="stance stance-mixed">mixed_long_term_risk</div></div>
+      <div class="topic-chip"><div class="name">教育・再教育・SCM</div><div class="stance stance-bullish">bullish_structural</div></div>
+      <div class="topic-chip"><div class="name">マイクロインフルエンサー</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">富裕層体験消費</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">地方移住・コト消費</div><div class="stance stance-mixed">mixed</div></div>
+      <div class="topic-chip"><div class="name">米国防産業</div><div class="stance stance-bearish">bearish_supply</div></div>
+      <div class="topic-chip"><div class="name">韓国(対米FTA優位)</div><div class="stance stance-bullish">bullish_relative</div></div>
+      <div class="topic-chip"><div class="name">ハイブリッド車</div><div class="stance stance-bearish">bearish_transition</div></div>
+      <div class="topic-chip"><div class="name">ドイツ防衛転換</div><div class="stance stance-bullish">bullish_structural</div></div>
+      <div class="topic-chip"><div class="name">AIサイバー</div><div class="stance stance-cautious">weakened</div></div>
+      <div class="topic-chip"><div class="name">事業承継・M&amp;A</div><div class="stance stance-bullish">bullish_structural</div></div>
+      <div class="topic-chip"><div class="name">ノキア型一社依存</div><div class="stance stance-cautious">structural_risk</div></div>
+      <div class="topic-chip"><div class="name">AMD</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">サムスン半導体</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">NVIDIA</div><div class="stance stance-bullish">mixed_bullish</div></div>
+      <div class="topic-chip"><div class="name">Broadcom/Marvel (ASIC)</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">バークシャー (Greg Abel)</div><div class="stance stance-mixed">transition_watch</div></div>
+      <div class="topic-chip"><div class="name">大量解雇/中間管理職</div><div class="stance stance-cautious">structural_ongoing</div></div>
+      <div class="topic-chip"><div class="name">Apple サプライ多角化</div><div class="stance stance-mixed">watch</div></div>
+      <div class="topic-chip"><div class="name">スシロー/日本食チェーン</div><div class="stance stance-bullish">bullish_short_term</div></div>
+      <div class="topic-chip"><div class="name">Waymo/ロボタクシー</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">鴻海/Foxconn</div><div class="stance stance-mixed">watch_strategic</div></div>
+      <div class="topic-chip"><div class="name">BHE/データセンター電力</div><div class="stance stance-bullish">bullish_pick_and_shovel</div></div>
+      <div class="topic-chip"><div class="name">NetJets/プライベートジェット</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">インド成長</div><div class="stance stance-bullish">bullish_with_caveats</div></div>
+      <div class="topic-chip"><div class="name">ソフトバンク</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">重工/防衛(日本)</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">任天堂</div><div class="stance stance-cautious">cautious_short_term</div></div>
+      <div class="topic-chip"><div class="name">ソニー/フィジカルAI</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">CXMT/中国DRAM</div><div class="stance stance-bullish">bullish_emerging</div></div>
+      <div class="topic-chip"><div class="name">光通信/コーニング</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">DataBricks/企業SaaS</div><div class="stance stance-bullish">bullish</div></div>
+      <div class="topic-chip"><div class="name">米中間選挙2026</div><div class="stance stance-mixed">watch</div></div>
+      <div class="topic-chip"><div class="name">SpaceX/ブルーオリジン</div><div class="stance stance-mixed">transition_watch</div></div>
+      <div class="topic-chip"><div class="name">中東覇権争い/UAE-サウジ</div><div class="stance stance-mixed">watch</div></div>
+      <div class="topic-chip"><div class="name">Huawei/中国AI</div><div class="stance stance-bullish">bullish_strategic</div></div>
+      <div class="topic-chip"><div class="name">為替介入/円安構造</div><div class="stance stance-bearish">bearish_yen</div></div>
+      <div class="topic-chip"><div class="name">GAFAM/AI投資ROI</div><div class="stance stance-cautious">cautious</div></div>
+      <div class="topic-chip"><div class="name">日本IP産業</div><div class="stance stance-bearish">bearish_structural</div></div>
+      <div class="topic-chip"><div class="name">OSAT/半導体後工程</div><div class="stance stance-bullish">bullish</div></div>
+  </div>
+</div></section>
+
+<section id="watch" class="alt"><div class="wrap">
+  <h2>8. 要注意ポイント</h2>
+  <p class="lead">ambivalent / weakened / revised の自動抽出。</p>
+    <div class="watch-card">
+      <h4>⚠ 外交評価のアンビバレンス: 高市の中立外交は『勝利』、関税15%合意は『完全敗北』。文脈分離で読む… (blf_026)</h4>
+      <p>関税面と外交面で評価が分離。今後の発言で整合性を観察。米中会談動画では高市の情報優位性も強調</p>
+    </div>
+    <div class="watch-card">
+      <h4>✎ 5,500億ドル(80兆円)対米投資基金は『合法的な資金吸い上げ』、回収まで5:5、回収後9:1… (pred_014)</h4>
+      <p>5/19動画で『回収まで5:5、回収後9:1』と詳細化。日本サプライチェーン優先=日本メーカーにプラス面ありと評価追加 <span class="ref">status: revised</span></p>
+    </div>
+    <div class="watch-card">
+      <h4>▼ AIによるサイバー攻撃(Anthropic Mythus型)が次世代の地政学切り札となる… (pred_018)</h4>
+      <p>5/19の米中会談検証で本人が『起きなかった』と外れを認める。ただし将来的な脅威としては維持 <span class="ref">status: weakened</span></p>
+    </div>
+</div></section>
+
+<footer class="bottom"><div class="wrap">
+  <div><strong>Thought &amp; Forecast Tracker</strong> — マイキー佐野（佐野義仁）思想スナップショット<br>
+  更新: 2026-08-14 / 全 102 stance_history イベント<br>
+  ソース: YouTube 59本 + note 19記事<br>
+  自動更新: 毎日ソース取得 / 毎週金曜に抽出＋本HTML再生成し GitHub Pages 公開</div>
+  <div class="stats">
+    <div><b>34</b>思想</div><div><b>44</b>予測</div><div><b>54</b>テーマ</div>
+    <div><b>102</b>変化イベント</div><div><b>1</b>validated</div>
+    <div><b>1</b>weakened</div><div><b>1</b>revised</div>
+  </div>
+</div></footer>
+
+<script>
+  document.querySelectorAll('.pred-controls button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.pred-controls button').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var f=btn.dataset.filter;
+      document.querySelectorAll('table.preds tbody tr').forEach(function(row){
+        if(f==='all'){row.style.display='';}
+        else{var cats=(row.dataset.cat||'').split(/\s+/);row.style.display=cats.indexOf(f)>=0?'':'none';}
+      });
+    });
+  });
+</script>
+</body>
+</html>
